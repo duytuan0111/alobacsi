@@ -14,8 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware(['adminLogin'])->group(function() {
+    Route::get('admin/home', 'AdminController@index')->name('admin/home');
+});
 Route::prefix('admin')->group(function () {
     Route::post('/login', 'AdminController@login')->name('admin/login');
     Route::get('/login', 'AdminController@login');
-    Route::get('/home', 'AdminController@index')->name('admin'); // Định danh route
 });
+Route::get('admin/logout', 'AdminController@logout')->name('admin/logout');

@@ -81,15 +81,20 @@ class AdminController extends Controller
     {
         //
     }
-
+    public function logout() {
+        if(Auth::check()) {
+            Auth::logout();
+        }
+        return redirect()->route('/admin/login');
+    }
     public function login(Request $request) {
         if ($request->input('username')) {
             $userName   = $request->input('username');
             $pass       = $request->input('password');
             if (Auth::attempt(['username' => $userName, 'password' => $pass])) {
-                dd('Login success!');
+                return redirect()->route('admin/home');
             } else {
-                dd('wrong pass');
+                return redirect()->route('admin/login');
             }
         } else {
             return view('admin.login');
