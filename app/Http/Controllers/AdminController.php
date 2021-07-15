@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 // php 
 class AdminController extends Controller
@@ -80,5 +80,19 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function login(Request $request) {
+        if ($request->input('username')) {
+            $userName   = $request->input('username');
+            $pass       = $request->input('password');
+            if (Auth::attempt(['username' => $userName, 'password' => $pass])) {
+                dd('Login success!');
+            } else {
+                dd('wrong pass');
+            }
+        } else {
+            return view('admin.login');
+        }
     }
 }

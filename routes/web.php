@@ -14,5 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::post('/admin/login', 'AdminController@login')->name('admin/login');
+Route::get('/admin/login', 'AdminController@login');
 Route::get('admin','AdminController@index')->name('admin'); // Định danh route
