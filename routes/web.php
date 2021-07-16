@@ -14,8 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::middleware(['adminLogin'])->group(function() {
-    Route::get('admin/home', 'AdminController@index')->name('admin/home');
+Route::middleware(['adminLogin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('home', 'AdminController@index')->name('admin/home');
+
+    });
 });
 Route::prefix('admin')->group(function () {
     Route::post('/login', 'AdminController@login')->name('admin/login');

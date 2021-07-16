@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 // php 
 class AdminController extends Controller
 {
+    protected $_data;
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +14,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $data = [
+            'name' => 'Trang chủ',
+            'key' => 'Trang tổng quan'
+        ];
+        return view('admin.index',$data);
     }
 
     /**
