@@ -90,7 +90,7 @@ class AdminController extends Controller
         if(Auth::check()) {
             Auth::logout();
         }
-        return redirect()->route('/admin/login');
+        return redirect()->route('admin/login');
     }
     public function login(Request $request) {
         if ($request->input('username')) {
